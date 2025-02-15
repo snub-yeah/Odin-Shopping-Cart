@@ -12,6 +12,9 @@ export default function Home() {
         <p>This will be a link later</p>
         <button onClick={() => router.push("/")}>Home</button>
         <button onClick={() => router.push("/shop")}>Shop</button>
+        <div className="cart">
+          <button>Cart</button>
+        </div>
       </nav>
       <main className="mainContent">
         <h1>hey guys welcome to my shop</h1>

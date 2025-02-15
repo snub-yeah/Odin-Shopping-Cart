@@ -1,0 +1,67 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "name": "Staminan Royale",
+            "price": 12000,
+            "description": "Restores a lot of health and heat",
+            "photo": "/images/Staminan_Royale.webp"
+        },
+        {
+            "id": 2,
+            "name": "Appstim Half",
+            "price": 3000,
+            "description": "Stimulates your digestive tract, slightly lowering your Hunger Gauge",
+            "photo": "/images/Appstim_Half.webp"
+        },
+        {
+            "id": 3,
+            "name": "Appstim RX",
+            "price": 20000,
+            "description": "Stimulates your digestive tract, lowering your Hunger Gauge",
+            "photo": "/images/AppStim_RX.webp"
+        },
+        {
+            "id": 4,
+            "name": "Staminan Spark",
+            "price": 20000,
+            "description": "Nutritional drink that restores 1000 HP and 300 MP",
+            "photo": "/images/Staminan_Spark.webp"
+        },
+        {
+            "id": 5,
+            "name": "Staminan X",
+            "price": 1200,
+            "description": "Restores some health and heat",
+            "photo": "/images/Staminan_X.webp"
+        },
+        {
+            "id": 6,
+            "name": "Staminan XX",
+            "price": 3400,
+            "description": "Restores a good amount of health and heat",
+            "photo": "/images/Staminan_XX.webp"
+        },
+        {
+            "id": 7,
+            "name": "Suntory BOSS Coffee",
+            "price": 800,
+            "description": "Good for when you're feeling tired",
+            "photo": "/images/Suntory_BOSS_Coffee.webp"
+        },
+        {
+            "id": 8,
+            "name": "Tauriner Maximum",
+            "price": 1000,
+            "description": "Nutritional drink that restores 300 MP",
+            "photo": "/images/Tauriner_Maximum.webp"
+        },
+        {
+            "id": 9,
+            "name": "Empty Cough Drop Tin",
+            "price": 500,
+            "description": "A tin that once held Asada Ame cough drops. There's nothing inside now, but the can could be used for enhancing weapons.",
+            "photo": "/images/Empty_Cough_Drop_Tin.webp"
+        }
+    ]
+}
