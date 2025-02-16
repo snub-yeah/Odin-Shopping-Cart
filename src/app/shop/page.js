@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Item from "../components/Item";
+import styles from "./shop.module.css";
 
 export default function Shop() {
   const router = useRouter();
@@ -28,9 +29,13 @@ export default function Shop() {
       </nav>    
       <main className="mainContent">
         <h1>shop</h1>
-        {items.map((item) => (
-          <Item key={item.id} item={item} />
-        ))}
+        <div className={styles.shopContainer}>
+          <div className={styles.itemContainer}>
+            {items.map((item) => (
+              <Item key={item.id} item={item} />
+            ))}
+          </div>
+        </div>
       </main>
     </div>
   );
