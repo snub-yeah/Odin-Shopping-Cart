@@ -17,7 +17,6 @@ export default function Item() {
             
             if (preloadedData) {
                 setItem(JSON.parse(preloadedData));
-                console.log("preloaded data", preloadedData);
                 return;
             }
 
@@ -35,6 +34,28 @@ export default function Item() {
         
         fetchItem();
     }, []);
+
+    const handleAddToCart = async () => {
+        try {
+            const response = await fetch("/api/add-to-cart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ itemId: item.id }),
+            });
+
+            if (response.ok) {
+                alert("Item added to cart successfully!");
+            } else {
+                const data = await response.json();
+                alert(data.error || "Failed to add item to cart");
+            }
+        } catch (error) {
+            alert("Error adding item to cart");
+            console.error(error);
+        }
+    };
 
     if (!item) return <div>Loading...</div>;
 
@@ -55,7 +76,7 @@ export default function Item() {
                 <p>{item.description}</p>
                 <p>{item.price}</p>
                 </div>
-                <button>Add to Cart</button>
+                <button onClick={handleAddToCart}>Add to Cart</button>
             </main>
         </div>
     );
