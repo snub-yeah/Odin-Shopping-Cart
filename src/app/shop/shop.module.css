@@ -1,0 +1,66 @@
+:root {
+    --background: #ebd9d9;
+    --navBackground: #534b42;
+    --foreground: #171717;
+    --text: #000000;
+    --boxShadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    --itemBackground: #f3e7e7;
+    --itemBackgroundHover: #ece2dc;
+    --priceColor: #865c2c;
+  }
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--itemBackground);
+  color: var(--text);
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 6px;
+  box-shadow: var(--boxShadow);
+}
+
+.item:hover {
+  transform: translateY(-10px);
+  background-color: var(--itemBackgroundHover);
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.item img {
+  width: minmax(100%, 150px);
+  height: minmax(100%, 150px);
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.itemInfo h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.itemPrice {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--priceColor);
+}
+
+.itemContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  width: 70%;
+  gap: 1rem;
+}
+
+.shopContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
