@@ -26,6 +26,7 @@
   transform: translateY(-10px);
   background-color: var(--itemBackgroundHover);
   transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .item img {
