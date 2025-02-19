@@ -42,7 +42,10 @@ export default function Item() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ itemId: item.id }),
+                body: JSON.stringify({ 
+                    itemId: item.id,
+                    item: item
+                }),
             });
 
             if (response.ok) {
@@ -65,7 +68,7 @@ export default function Item() {
                 <button onClick={() => router.push("/")}>Home</button>
                 <button onClick={() => router.push("/shop")}>Shop</button>
                 <div className="cart">
-                    <button>Cart</button>
+                    <button onClick={() => router.push("/cart")}>Cart</button>
                 </div>
             </nav>
             <main className="mainContent">

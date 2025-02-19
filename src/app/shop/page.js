@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Item from "../components/Item";
+import NavBar from "../components/NavBar";
 import styles from "./shop.module.css";
 
 export default function Shop() {
@@ -49,13 +50,7 @@ export default function Shop() {
   //potential TODO: add different sorting options
   return (
     <div className="container">
-      <nav className="navBar">
-        <button onClick={() => router.push("/")}>Home</button>
-        <button onClick={() => router.push("/shop")}>Shop</button>
-        <div className="cart">
-          <button>Cart</button>
-        </div>
-      </nav>    
+      <NavBar />
       <main className="mainContent">
         <h1>shop</h1>
         <div className={styles.shopContainer}>
