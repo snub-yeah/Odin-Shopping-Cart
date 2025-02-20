@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import NavBar from "../../components/NavBar";
+import QuantityButton from "../../components/QuantityButton";
 
 export default function Item() {
     const router = useRouter();
@@ -35,42 +37,12 @@ export default function Item() {
         fetchItem();
     }, []);
 
-    const handleAddToCart = async () => {
-        try {
-            const response = await fetch("/api/add-to-cart", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ 
-                    itemId: item.id,
-                    item: item
-                }),
-            });
-
-            if (response.ok) {
-                alert("Item added to cart successfully!");
-            } else {
-                const data = await response.json();
-                alert(data.error || "Failed to add item to cart");
-            }
-        } catch (error) {
-            alert("Error adding item to cart");
-            console.error(error);
-        }
-    };
 
     if (!item) return <div>Loading...</div>;
 
     return (
         <div className="container">
-            <nav className="navBar">
-                <button onClick={() => router.push("/")}>Home</button>
-                <button onClick={() => router.push("/shop")}>Shop</button>
-                <div className="cart">
-                    <button onClick={() => router.push("/cart")}>Cart</button>
-                </div>
-            </nav>
+            <NavBar />
             <main className="mainContent">
                 <h1>Item Info</h1>
                 <div className="itemInfo">
@@ -79,7 +51,7 @@ export default function Item() {
                 <p>{item.description}</p>
                 <p>{item.price}</p>
                 </div>
-                <button onClick={handleAddToCart}>Add to Cart</button>
+                <QuantityButton item={item} />
             </main>
         </div>
     );

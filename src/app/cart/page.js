@@ -1,11 +1,9 @@
 'use client'
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 
 export default function Cart() {
-    const router = useRouter();
-
+    //TODO: Fix styling on this page and some others, add a - + button to change the quantity of each item
     const [cart, setCart] = useState([]);
 
     const getCart = async () => {
