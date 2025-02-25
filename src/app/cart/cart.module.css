@@ -12,6 +12,14 @@
   text-align: center;
 }
 
+.cartSubprices {
+  font-size: 1.5rem;
+  color: var(--navBackground);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 .cartTable {
   width: 100%;
   border-collapse: collapse;

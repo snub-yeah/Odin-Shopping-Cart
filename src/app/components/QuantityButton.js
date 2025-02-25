@@ -36,7 +36,7 @@ export default function QuantityButton(props) {
 
     const handleDecrease = async () => {
         if (quantity <= 0) return;
-        const response = await fetch('/api/add-to-cart', {
+        await fetch('/api/add-to-cart', {
             method: 'DELETE',
             body: JSON.stringify({ 
                 itemId: props.item.id, 
@@ -47,11 +47,11 @@ export default function QuantityButton(props) {
     }
 
     useEffect(() => {
-        const initQuantity = async () => {
+        const initializeQuantity = async () => {
             const qty = await getInitialQuantity();
             setQuantity(qty);
         };
-        initQuantity();
+        initializeQuantity();
     }, []);
 
     const handleChange = async (e) => {
@@ -85,7 +85,7 @@ export default function QuantityButton(props) {
 
     return (
         <div className={styles.quantityContainer}>
-            <button onClick={handleDecrease} className={styles.decreaseButton}>−</button>
+            <button onClick={handleDecrease} className={styles.decreaseButton}>-</button>
             <input type="number" className={styles.quantityText} value={quantity} onChange={handleChange} />
             <button onClick={handleIncrease} className={styles.increaseButton}>+</button>
         </div>

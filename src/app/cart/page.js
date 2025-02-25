@@ -77,8 +77,10 @@ export default function Cart() {
                             ))}
                         </tbody>
                     </table>
-                    <h1 className={styles.cartHeader}>Total: ¥{total.toLocaleString()}</h1>
-                    <button className={styles.checkoutButton} onClick={() => alert("Checkout")}>
+                    <h1 className={styles.cartSubprices}>Subtotal: ¥{(total.toFixed(2)).toLocaleString()}</h1>
+                    <h1 className={styles.cartSubprices}>Sales Tax: ¥{(((total * 0.086)).toFixed(2)).toLocaleString()}</h1>
+                    <h1 className={styles.cartHeader}>Total: ¥{((total + (total * 0.086)).toFixed(2)).toLocaleString()}</h1>
+                    <button className={styles.checkoutButton} onClick={() => alert("You don't have enough motion for allat")}>
                         Proceed to Checkout
                     </button>
                 </div>
