@@ -1,0 +1,94 @@
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  color: var(--navBackground);
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.header p {
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+}
+
+.imageContainer {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--boxShadow);
+}
+
+.itemSection {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.itemSection h2 {
+  font-size: 2rem;
+  color: var(--navBackground);
+  margin-bottom: 1rem;
+}
+
+.itemGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.shopButton {
+  padding: 1rem 2rem;
+  background-color: var(--navBackground);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  margin-top: 2rem;
+}
+
+.shopButton:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .itemGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+} 

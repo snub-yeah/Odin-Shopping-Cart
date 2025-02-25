@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import QuantityButton from "../../components/QuantityButton";
+import styles from './item.module.css';
 
 export default function Item() {
     const router = useRouter();
@@ -44,14 +45,18 @@ export default function Item() {
         <div className="container">
             <NavBar />
             <main className="mainContent">
-                <h1>Item Info</h1>
-                <div className="itemInfo">
-                <h2>{item.name}</h2>
-                <img src={item.photo} alt={item.name} />
-                <p>{item.description}</p>
-                <p>{item.price}</p>
+                <h1 className={styles.itemHeader}>Item Info</h1>
+                <div className={styles.itemContainer}>
+                    <div className={styles.itemInfo}>
+                        <img src={item.photo} alt={item.name} className={styles.itemImage} />
+                        <div className={styles.itemDetails}>
+                            <h2 className={styles.itemName}>{item.name}</h2>
+                            <p className={styles.itemDescription}>{item.description}</p>
+                            <p className={styles.itemPrice}>¥{item.price.toLocaleString()}</p>
+                            <QuantityButton item={item} />
+                        </div>
+                    </div>
                 </div>
-                <QuantityButton item={item} />
             </main>
         </div>
     );
