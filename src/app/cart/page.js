@@ -9,7 +9,20 @@ export default function Cart() {
     const getCart = async () => {
         const response = await fetch('/api/add-to-cart');
         const data = await response.json();
-        setCart(data.cart);
+
+        let tempCart = [];
+        //while the quantity is greater than 0, add the item to the cart
+        for (const item of data.cart) {
+            for (let i = 0; i < item.quantity; i++) {
+                //have to change the cartItemId to a unique value
+                tempCart.push({
+                    ...item,
+                    cartItemId: crypto.randomUUID(),
+                });
+            }
+        }
+        
+        setCart(tempCart);
     }
 
     useEffect(() => {

@@ -8,10 +8,10 @@ export default function QuantityButton(props) {
     const getInitialQuantity = async () => {
         const cart = await fetch('/api/add-to-cart');
         const data = await cart.json();
-        const count = data.cart.reduce((acc, item) => {
-            return item.id === props.item.id ? acc + 1 : acc;
-        }, 0);
-        return count;
+        //find the item
+        const item = data.cart.find(item => item.id === props.item.id);
+        //assert that the item exists, so we return either the quantity or 0
+        return item ? item.quantity : 0;
     }
 
     const handleIncrease = async () => {
@@ -43,7 +43,6 @@ export default function QuantityButton(props) {
                 item: props.item
             }),
         });
-        const data = await response.json();
         setQuantity(prev => prev - 1);
     }
 
@@ -69,11 +68,19 @@ export default function QuantityButton(props) {
             itemId: props.item.id
         };
         
-        await fetch('/api/add-to-cart', {
-            method: 'POST',
-            body: JSON.stringify(body),
-        });
-        setQuantity(newQuantity);
+        try {
+            const response = await fetch('/api/add-to-cart', {
+                method: 'POST',
+                body: JSON.stringify(body),
+            });
+            if (!response.ok) throw new Error('Failed to update cart');
+            setQuantity(newQuantity);
+        } catch (error) {
+            console.error('Error updating cart:', error);
+            // revert to previous quantity if there's an error
+            const currentQty = await getInitialQuantity();
+            setQuantity(currentQty);
+        }
     }
 
     return (

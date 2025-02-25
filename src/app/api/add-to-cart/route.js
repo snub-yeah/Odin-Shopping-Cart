@@ -10,22 +10,40 @@ export async function POST(request) {
         const existingCart = await cookieStore.get('cart');
         const cart = existingCart ? JSON.parse(existingCart.value) : [];
 
-        // get current quantity of this item in cart
-        const currentCount = cart.filter(currentItem => currentItem.id === item.id).length;
+        // find if item already exists in cart
+        const existingItemIndex = cart.findIndex(currentItem => currentItem.id === item.id);
 
-        // clear all instances of this item from cart. i wasn't doing this earlier, and it was messing up.
-        const updatedCart = cart.filter(currentItem => currentItem.id !== item.id);
-        
-        // add the correct number of items
-        for (let i = 0; i < count; i++) {
-            updatedCart.push({
-                ...item,
-                cartItemId: crypto.randomUUID()
-            });
+        let updatedCart;
+        if (existingItemIndex >= 0) {
+            // if count is 0, remove the item
+            if (count === 0) {
+                updatedCart = cart.filter(currentItem => currentItem.id !== item.id);
+            } else {
+                // set the exact quantity instead of incrementing
+                updatedCart = cart.map(currentItem => 
+                    currentItem.id === item.id 
+                        ? { ...currentItem, quantity: count }
+                        : currentItem
+                );
+            }
+        } else {
+            // if item doesn't exist and count > 0, add it
+            if (count > 0) {
+                updatedCart = [
+                    ...cart,
+                    {
+                        ...item,
+                        quantity: count,
+                        cartItemId: crypto.randomUUID(),
+                    }
+                ];
+            } else {
+                updatedCart = cart;
+            }
         }
         
         // set the cookie with the updated cart
-        const response = NextResponse.json({ message: "Item added to cart" });
+        const response = NextResponse.json({ message: "Cart updated" });
         response.cookies.set('cart', JSON.stringify(updatedCart), {
             httpOnly: true,
             path: '/',
@@ -33,7 +51,7 @@ export async function POST(request) {
         
         return response;
     } catch (error) {
-        return NextResponse.json({ error: "Failed to add item to cart" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to update cart" }, { status: 500 });
     }
 }
 
@@ -50,14 +68,21 @@ export async function DELETE(request) {
         const existingCart = await cookieStore.get('cart');
         let cart = existingCart ? JSON.parse(existingCart.value) : [];
         
-        // find the first version of the item to remove
+        // find the item and decrease its quantity
         const itemIndex = cart.findIndex(item => item.id === itemId);
         if (itemIndex > -1) {
-            cart.splice(itemIndex, 1);
+            const item = cart[itemIndex];
+            if (item.quantity > 1) {
+                // if quantity > 1, decrease it by 1
+                cart[itemIndex] = { ...item, quantity: item.quantity - 1 };
+            } else {
+                // if quantity is 1 or less, remove the item completely
+                cart.splice(itemIndex, 1);
+            }
         }
         
         // update cookie
-        const response = NextResponse.json({ message: "Item removed from cart" });
+        const response = NextResponse.json({ message: "Item updated in cart" });
         response.cookies.set('cart', JSON.stringify(cart), {
             httpOnly: true,
             path: '/',
@@ -65,6 +90,6 @@ export async function DELETE(request) {
         
         return response;
     } catch (error) {
-        return NextResponse.json({ error: "Failed to remove item from cart" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to update item in cart" }, { status: 500 });
     }
 }
