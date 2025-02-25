@@ -46,13 +46,13 @@ export default function Shop() {
     }
   };
 
-  //TODO: Add a general "item" page that will have information about the item. It will be passed in the item info
+  
   //potential TODO: add different sorting options
   return (
     <div className="container">
       <NavBar />
       <main className="mainContent">
-        <h1>shop</h1>
+        <h1 className={styles.shopHeader}>shop</h1>
         <div className={styles.shopContainer}>
           <div className={styles.itemContainer}>
             {items.map((item) => (

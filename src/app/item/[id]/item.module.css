@@ -1,0 +1,59 @@
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--itemBackground);
+  border-radius: 8px;
+  box-shadow: var(--boxShadow);
+}
+
+.itemHeader {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--navBackground);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.itemInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  align-items: start;
+}
+
+.itemImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--boxShadow);
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.itemName {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.itemDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.itemPrice {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--priceColor);
+  margin: 1rem 0;
+} 
