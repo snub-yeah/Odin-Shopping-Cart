@@ -53,7 +53,7 @@ export default function Item() {
                             <h2 className={styles.itemName}>{item.name}</h2>
                             <p className={styles.itemDescription}>{item.description}</p>
                             <p className={styles.itemPrice}>¥{item.price.toLocaleString()}</p>
-                            <QuantityButton item={item} />
+                            <QuantityButton item={item} onQuantityChange={() => {return}}/>
                         </div>
                     </div>
                 </div>

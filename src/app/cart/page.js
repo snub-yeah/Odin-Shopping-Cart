@@ -7,6 +7,8 @@ import QuantityButton from "../components/QuantityButton";
 export default function Cart() {
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
+    const [updateCart, setUpdateCart] = useState(0); // useless variable for useEffect. This may seem like it could be done in a better way, but this somehow was faster
+    const [previousCart, setPreviousCart] = useState([]);
 
     const getCart = async () => {
         const response = await fetch('/api/add-to-cart');
@@ -26,12 +28,40 @@ export default function Cart() {
             }
         }
         setTotal(tempTotal);
-        setCart(tempCart);
+        setCart(keepPreviousItems(tempCart));
+    }
+
+    // this is a method that will prevent items from instantly disappearing if the user changes the quantity to 0.
+    const keepPreviousItems = (tempCart) => {
+        if (tempCart.length < previousCart.length) {
+            let newCart = [];
+            for (const cartItem of previousCart) {
+                const itemStillExists = tempCart.some(item => item.id === cartItem.id);
+                if (!itemStillExists) {
+                    newCart.push({
+                        ...cartItem,
+                        quantity: 0
+                    });
+                } else {
+                    newCart.push(cartItem);
+                }
+            }
+            return newCart;
+        }
+        return tempCart;
+    }
+
+    const handleCartChange = () => {
+        setUpdateCart(updateCart + 1);
     }
 
     useEffect(() => {
         getCart();
-    }, []);
+    }, [updateCart]);
+
+    useEffect(() => {
+        setPreviousCart(cart);
+    }, [cart]);
 
     return (
         <div className="container">
@@ -70,7 +100,7 @@ export default function Cart() {
                                     </td>
                                     <td>¥{item.price.toLocaleString()}</td>
                                     <td>
-                                        <QuantityButton item={item} />
+                                        <QuantityButton item={item} onQuantityChange={handleCartChange}/>
                                     </td>
                                     <td>¥{(item.price * item.quantity).toLocaleString()}</td>
                                 </tr>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "./quantity.module.css";
 export default function QuantityButton(props) {
+    const { onQuantityChange } = props;
     const [quantity, setQuantity] = useState(0);
     
     const getInitialQuantity = async () => {
@@ -30,6 +31,8 @@ export default function QuantityButton(props) {
         await fetch('/api/add-to-cart', {
             method: 'POST',
             body: JSON.stringify(body),
+        }).then(() => {
+            onQuantityChange();
         });
         setQuantity(newQuantity);
     }
@@ -42,6 +45,8 @@ export default function QuantityButton(props) {
                 itemId: props.item.id, 
                 item: props.item
             }),
+        }).then(() => {
+            onQuantityChange();
         });
         setQuantity(prev => prev - 1);
     }
@@ -75,6 +80,7 @@ export default function QuantityButton(props) {
             });
             if (!response.ok) throw new Error('Failed to update cart');
             setQuantity(newQuantity);
+            onQuantityChange();
         } catch (error) {
             console.error('Error updating cart:', error);
             // revert to previous quantity if there's an error
