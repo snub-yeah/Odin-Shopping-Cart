@@ -1,5 +1,7 @@
 # Odin Shopping Cart
-This is a project from the React section of The Odin Project. It is built with Next.js. The items on the store are from the Yakuza franchise.
+This is a project from the React section of The Odin Project. It is built with Next.js. The items on the store are from the Yakuza franchise. [Here are the Odin Project's requirements for the project](https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart).
+
+## [Live Deployed Site](https://odin-shopping-cart-orcin.vercel.app/)
 
 ## Features
 - Home page with information about the site
