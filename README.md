@@ -1,7 +1,9 @@
 # Odin Shopping Cart
+## [Live Deployed Site](https://odin-shopping-cart-orcin.vercel.app/)
+
 This is a project from the React section of The Odin Project. It is built with Next.js. The items on the store are from the Yakuza franchise. [Here are the Odin Project's requirements for the project](https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart).
 
-## [Live Deployed Site](https://odin-shopping-cart-orcin.vercel.app/)
+
 
 ## Features
 - Home page with information about the site
@@ -10,6 +12,18 @@ This is a project from the React section of The Odin Project. It is built with N
 - Cart page where users can check out
 - Quantity buttons that let users change the amount of an item they have
 
+### Screenshots
+Home Page
+![Home Page Screenshot](https://github.com/snub-yeah/Odin-Shopping-Cart/blob/main/DemoImages/HomePage.png?raw=true)
+
+Store Page
+![Store Page Screenshot](https://github.com/snub-yeah/Odin-Shopping-Cart/blob/main/DemoImages/StorePage.png?raw=true)
+
+Cart Page
+![Cart Page Screenshot](https://github.com/snub-yeah/Odin-Shopping-Cart/blob/main/DemoImages/CartPage.png?raw=true)
+
+### Demo Video
+Here is a link to a [demonstration video](https://youtu.be/0NqYpBCTkn4).
 
 ## Installation
 This installation **SHOULD** work if you already have npm installed.
@@ -26,6 +40,7 @@ This site is mainly made with Next.JS. It also uses CSS for styling.
 ### Future Plans
 - Add more items
 - Add more information about the page and about items
+- Add better navigation around the site
 
 ### What I learned
-Next.JS is really cool. This is my first project with it, and the routing functionality is awesome.
+Next.JS is really cool. This is my first project with it, and the routing functionality is awesome. I also learned github pages is annoying to use with Next.JS. 
