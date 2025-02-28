@@ -11,6 +11,9 @@
   --foreground: #171717;
   --text: #000000;
   --boxShadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  --itemBackground: #f3e7e7;
+  --itemBackgroundHover: #ece2dc;
+  --priceColor: #865c2c;
 }
 
 body {
