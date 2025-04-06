@@ -4,14 +4,16 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import QuantityButton from "../../components/QuantityButton";
+import Item from "../../components/Item";
 import styles from './item.module.css';
 
-export default function Item() {
+export default function ItemPage() {
     const router = useRouter();
     const [item, setItem] = useState(null);
+    const [relatedItems, setRelatedItems] = useState([]);
 
     useEffect(() => {
-      //get the item id from the URL
+        //get the item id from the URL
         const itemId = window.location.pathname.split('/').pop();
         
         const fetchItem = async () => {
@@ -34,10 +36,25 @@ export default function Item() {
                 setItem(data);
             }
         };
+
+        const fetchRelatedItems = async () => {
+            const response = await fetch("/api/items");
+            const data = await response.json();
+            
+            // Get two random items excluding the current item
+            const shuffled = [...data.items]
+                .filter(item => item.id != itemId)
+                .sort(() => 0.5 - Math.random());
+            setRelatedItems(shuffled.slice(0, 2));
+        };
         
         fetchItem();
+        fetchRelatedItems();
     }, []);
 
+    const handleRelatedItemClick = (item) => {
+        router.push(`/item/${item.id}`);
+    };
 
     if (!item) return <div>Loading...</div>;
 
@@ -47,6 +64,7 @@ export default function Item() {
             <main className="mainContent">
                 <h1 className={styles.itemHeader}>Item Info</h1>
                 <div className={styles.itemContainer}>
+                    <button className={styles.backButton} onClick={() => router.push("/shop")}>← Back to Shop</button>
                     <div className={styles.itemInfo}>
                         <img src={item.photo} alt={item.name} className={styles.itemImage} />
                         <div className={styles.itemDetails}>
@@ -55,6 +73,18 @@ export default function Item() {
                             <p className={styles.itemPrice}>¥{item.price.toLocaleString()}</p>
                             <QuantityButton item={item} onQuantityChange={() => {return}}/>
                         </div>
+                    </div>
+                </div>
+                <div className={styles.relatedItems}>
+                    <h2>Related Items</h2>
+                    <div className={styles.relatedItemsGrid}>
+                        {relatedItems.map(relatedItem => (
+                            <Item 
+                                key={relatedItem.id}
+                                item={relatedItem}
+                                onClick={() => handleRelatedItemClick(relatedItem)}
+                            />
+                        ))}
                     </div>
                 </div>
             </main>
